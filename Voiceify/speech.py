@@ -1,16 +1,20 @@
-from gtts import gTTS, lang
-from playsound import playsound
-import requests
-from tkinter import *
-from tkinter import messagebox, filedialog
-import random
+#
+
+from gtts import gTTS, lang                    # For text-to-speech and language support
+from playsound import playsound                # For playing the generated MP3 audio
+import requests                                # For fetching real-time quotes from an API
+from tkinter import *                          # For creating the GUI (Tkinter toolkit)
+from tkinter import messagebox, filedialog     # For pop-up dialogs and file saving
+import random                                  # For selecting random content if needed
 
 # -------------------------------- Functions --------------------------------
 
+# Function: Convert text to speech and play it aloud
 def text_to_speech():
-    text = text_entry.get("1.0", "end-1c")
-    language = accent_entry.get()
-    speed = slow_var.get()
+    text = text_entry.get("1.0", "end-1c")      # Get text from the text box
+    language = accent_entry.get()               # Get selected language code
+    speed = slow_var.get()                      # True if 'slow voice' is checked
+    
     if not text.strip() or not language.strip():
         messagebox.showerror("Error", "Please enter both text and language code.")
         return
@@ -21,15 +25,18 @@ def text_to_speech():
     except Exception as e:
         messagebox.showerror("Error", str(e))
 
+# Function: Show a list of all supported language codes (e.g., en, hi)
 def list_languages():
     languages = lang.tts_langs()
     all_langs = "\n".join([f"{k}: {v}" for k, v in languages.items()])
     messagebox.showinfo("Languages", all_langs)
 
+# Function: Clear all input fields in the GUI
 def clear_text():
     text_entry.delete("1.0", END)
     accent_entry.delete(0, END)
 
+# Function: Save the generated speech as an MP3 file with custom filename
 def save_as_mp3():
     text = text_entry.get("1.0", "end-1c")
     language = accent_entry.get()
@@ -46,6 +53,7 @@ def save_as_mp3():
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
+# Function: Fetch a random motivational quote from ZenQuotes API and speak it
 def speak_random_quote():
     try:
         response = requests.get("https://zenquotes.io/api/random")
@@ -62,13 +70,14 @@ def speak_random_quote():
 
 # -------------------------------- GUI Setup --------------------------------
 
+# Create the main window
 window = Tk()
 window.title("🔊 Voiceify: Text to Speech")
 window.geometry("600x500")
 window.configure(bg="#1e1e1e")
 
 # -------------------- Styling --------------------
-
+# Define fonts and styles for widgets
 FONT = ("Segoe UI", 10)
 BTN_STYLE = {"bg": "#2e8b57", "fg": "white", "font": FONT, "activebackground": "#3cb371"}
 LABEL_STYLE = {"bg": "#1e1e1e", "fg": "white", "font": ("Segoe UI", 10, "bold")}
