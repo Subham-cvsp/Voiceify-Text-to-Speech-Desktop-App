@@ -1,0 +1,21 @@
+Project Title:
+Voiceify – Text-to-Speech Desktop App with Quote API Integration
+
+Technologies Used:
+Python, Tkinter, gTTS, Playsound, Requests, REST API (ZenQuotes.io)
+
+Project Description:
+Voiceify is a Python-based desktop GUI application that converts user-input text into speech using Google’s Text-to-Speech (gTTS) library. The app features a modern dark-themed interface built with Tkinter, the ability to control speech speed, and supports saving the audio output as MP3 files. It also integrates a real-time motivational quote API (ZenQuotes.io) that fetches a new quote on each request and reads it aloud to the user.
+
+Key Features:
+- GUI built with Tkinter
+- Convert text to speech with gTTS
+- Save speech as MP3 file
+- Speak real-time motivational quotes from ZenQuotes API
+- Toggle between slow and normal voice speed
+- List all supported language codes
+- Dark-mode modern user interface
+
+Author:
+Subham Kumar Mishra
+
